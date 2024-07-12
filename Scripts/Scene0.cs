@@ -90,7 +90,12 @@ public class testing : MonoBehaviour {
         usersWakeUpTime = timeInMinToString(usersWakeUpTimeMinutes);
         usersBedtimeMinutes = usersWakeUpTimeMinutes - sleepNeededMinutes() - usersFallingAsleepDuration;
         usersBedtime = timeInMinToString(usersBedtimeMinutes);
-        resultsDisplay.GetComponent<TMPro.TMP_Text>().SetText("You need " + sleepNeededHr + "hr " + sleepNeededMin + "min sleep per night.\nBedtime = " + usersBedtime + "\nWake-up time = " + usersWakeUpTime);
+        if (sleepNeededMin == 0) {
+            resultsDisplay.GetComponent<TMPro.TMP_Text>().SetText("You need " + sleepNeededHr + "hr sleep per night.\nBedtime = " + usersBedtime + "\nWake-up time = " + usersWakeUpTime);
+        }
+        else {
+            resultsDisplay.GetComponent<TMPro.TMP_Text>().SetText("You need " + sleepNeededHr + "hr " + sleepNeededMin + "min sleep per night.\nBedtime = " + usersBedtime + "\nWake-up time = " + usersWakeUpTime);
+        }
     }
 
     int sleepNeededMinutes() {
