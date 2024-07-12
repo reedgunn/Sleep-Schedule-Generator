@@ -21,6 +21,8 @@ public class testing : MonoBehaviour {
     public static int usersFallingAsleepDuration = 10;
     public static int usersWakeUpTimeMinutes = 0;
     public int usersBedtimeMinutes;
+    public static int sleepNeededMin;
+    public static int sleepNeededHr;
 
     bool isLeapYear(int year) { return (year % 4 == 0 && year % 100 != 0) || year % 400 == 0; }
 
@@ -88,7 +90,7 @@ public class testing : MonoBehaviour {
         usersWakeUpTime = timeInMinToString(usersWakeUpTimeMinutes);
         usersBedtimeMinutes = usersWakeUpTimeMinutes - sleepNeededMinutes() - usersFallingAsleepDuration;
         usersBedtime = timeInMinToString(usersBedtimeMinutes);
-        resultsDisplay.GetComponent<TMPro.TMP_Text>().SetText("Your daily sleep schedule:\nBedtime = " + usersBedtime + "\nWake-up time = " + usersWakeUpTime);
+        resultsDisplay.GetComponent<TMPro.TMP_Text>().SetText("You need " + sleepNeededHr + "hr " + sleepNeededMin + "min sleep per night.\nBedtime = " + usersBedtime + "\nWake-up time = " + usersWakeUpTime);
     }
 
     int sleepNeededMinutes() {
@@ -102,6 +104,8 @@ public class testing : MonoBehaviour {
         else if (usersAgeYrs >= 22.00000f && usersAgeYrs < 45.50000f)  sleepNeededHrs = (-0.00000f * usersAgeYrs) + 8.00000f;
         else if (usersAgeYrs >= 45.50000f && usersAgeYrs < 122.44901f) sleepNeededHrs = (-0.01923f * usersAgeYrs) + 8.87500f;
         int sleepNeededMins = (int) (MathF.Round((sleepNeededHrs * 60.00000f) / 5.00000f) * 5.00000f);
+        sleepNeededMin = sleepNeededMins % 60;
+        sleepNeededHr = (sleepNeededMins - sleepNeededMin) / 60;
         return sleepNeededMins;
     }
 
