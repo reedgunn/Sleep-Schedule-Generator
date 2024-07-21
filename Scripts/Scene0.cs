@@ -259,7 +259,11 @@ public class testing : MonoBehaviour {
         YearOptions.GetComponent<TMPro.TMP_Dropdown>().value = currentYear - usersBirthdayYear;
         FallAsleepDuration.GetComponent<TMPro.TMP_Dropdown>().value = (usersFallingAsleepDuration - 10) / 5;
         WakeUpTimeOptions.GetComponent<TMPro.TMP_Dropdown>().value = usersWakeUpTimeMinutes / 5;
-        updateDisplayedResults();
+        userEditsBirthdayMonth();
+        userEditsBirthdayDay();
+        userEditsBirthdayYear();
+        userEditsFallingAsleepDuration();
+        userEditsWakeupTime();
     }
 
 }
